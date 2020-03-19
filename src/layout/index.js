@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { Layout, Badge } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  QuestionCircleOutlined,
-  BellOutlined,
-  PoweroffOutlined
-} from '@ant-design/icons';
+import { Layout } from 'antd';
 
 import Menu from './menu'
+import NavBar from './navBar'
 import './index.less'
 
 const { Header, Sider, Content } = Layout;
@@ -24,27 +18,24 @@ class AppLayout extends Component {
     });
   };
 
+  Logout = () => {
+    this.props.history.push('/login')
+  }
+
   render() {
+    const { collapsed } = this.state
     return (
       <Layout className="app-con">
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+        <Sider trigger={null} collapsible collapsed={ collapsed }>
           <div className="logo">
-            <img src={require('../imgs/logo.png')} className="logo-img"/>
-            教育
+            <img src={require('../imgs/logo.png')} className="logo-img" alt="教育" />
+            { collapsed ? null : <span className="ml10">教育</span> }
           </div>
           <Menu/>
         </Sider>
         <Layout>
           <Header className="app-header">
-            { this.state.collapsed ? <MenuUnfoldOutlined onClick={this.toggle} /> : <MenuFoldOutlined onClick={this.toggle} />}
-            <div className="fr">
-              <QuestionCircleOutlined />
-              <Badge>
-                <BellOutlined />
-              </Badge>
-              管理员：xxxx
-              <PoweroffOutlined />退出
-            </div>
+            <NavBar collapsed={ collapsed } toggle={ this.toggle } logout={ this.Logout }/>
           </Header>
           <Content className="app-content">
             {this.props.children}
