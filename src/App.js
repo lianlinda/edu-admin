@@ -5,6 +5,8 @@ import './App.css';
 import Login from './views/login'
 import Main from './views/main'
 
+import './mock'
+
 class App extends Component {
   render() {
     return (

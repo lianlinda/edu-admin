@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { getData } from './index.service'
 
 import './index.less'
 
@@ -10,7 +11,10 @@ class Login extends Component {
   // }
 
   handleLogin = () => {
-    this.props.history.push('/main')
+    // this.props.history.push('/main')
+    getData().then(res => {
+      console.log(res)
+    })
   }
 
   render() {
