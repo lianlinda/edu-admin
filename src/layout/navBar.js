@@ -29,7 +29,6 @@ class NavBar extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { collapsed, toggle } = this.props
     const menu = (
       <Menu>

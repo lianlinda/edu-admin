@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Menu } from 'antd';
 
+import EduIcon from '../utils/icon'
+
 const { SubMenu} = Menu
 
 class AppMenu extends Component {
   state = {
     menu: [{
       id: '1',
-      icon: 'DesktopOutlined',
+      icon: 'icon-yibiaopan1',
       title: '首页',
       url: '/main',
       children: []
     }, {
       id: '2',
-      icon: '',
+      icon: 'icon-kecheng',
       title: '课程管理',
       url: '',
       children: [{
@@ -30,7 +32,7 @@ class AppMenu extends Component {
       }]
     }, {
       id: '4',
-      icon: '',
+      icon: 'icon-shipin',
       title: '视频管理',
       url: '',
       children: [{
@@ -51,21 +53,21 @@ class AppMenu extends Component {
             if (ele.children.length) {
               return (
                 <SubMenu
-                  key={ele.id}
+                  key={ ele.id }
                   title={
                     <span>
-                      {/* <ReadOutlined /> */}
-                      <span>{ele.title}</span>
+                      { ele.icon ? <EduIcon type={ ele.icon } /> : null }
+                      <span>{ ele.title }</span>
                     </span>
                   }
                 >
                   {
                     ele.children.map(child => {
                       return (
-                        <Menu.Item key={child.id}>
-                          <Link to={child.url}>
-                            {/* <DesktopOutlined /> */}
-                            <span>{child.title}</span>
+                        <Menu.Item key={ child.id }>
+                          <Link to={ child.url }>
+                            { child.icon ? <EduIcon type={ child.icon } /> : null }
+                            <span>{ child.title }</span>
                           </Link>
                         </Menu.Item>
                       )
@@ -75,10 +77,10 @@ class AppMenu extends Component {
               )
             } else {
               return (
-                <Menu.Item key={ele.id}>
-                  <Link to={ele.url}>
-                    {/* <Icon type={ele.icon}/> */}
-                    <span>{ele.title}</span>
+                <Menu.Item key={ ele.id }>
+                  <Link to={ ele.url }>
+                    { ele.icon ? <EduIcon type={ ele.icon } /> : null }
+                    <span>{ ele.title }</span>
                   </Link>
                 </Menu.Item>
               )
