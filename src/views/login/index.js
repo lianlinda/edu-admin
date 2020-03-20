@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { getData } from './index.service'
+import { login } from './index.service'
 
 import './index.less'
 
 class Login extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
 
-  handleLogin = () => {
-    // this.props.history.push('/main')
-    getData().then(res => {
-      console.log(res)
-    })
+  handleLogin = values => {
+    login(values).then(res => {
+      // console.log(res)
+      this.props.history.push('/main')
+    }).catch(() => {})
   }
 
   render() {
@@ -30,7 +27,9 @@ class Login extends Component {
           </div>
           <div className="login-form">
             <h3 className="form-title">管理系统</h3>
-            <Form>
+            <Form
+              onFinish={this.handleLogin}
+            >
               <Form.Item
                 label=""
                 name="username"
@@ -40,7 +39,7 @@ class Login extends Component {
               </Form.Item>
               <Form.Item
                 label=""
-                name="passord"
+                name="password"
                 rules={[{ required: true, message: '请输入密码' }]}
               >
                 <Input.Password prefix={<LockOutlined />} />
@@ -53,7 +52,7 @@ class Login extends Component {
                 <Checkbox>记住密码</Checkbox>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" className="w-100" onClick={this.handleLogin}>登录</Button>
+                <Button type="primary" htmlType="submit" className="w-100">登录</Button>
               </Form.Item>
             </Form>
           </div>

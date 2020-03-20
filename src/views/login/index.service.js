@@ -1,8 +1,9 @@
 import request from '../../utils/request'
 
-export function getData() {
+export function login(body) {
   return request({
-    url: '/getData',
-    method: 'get'
+    url: '/login',
+    method: 'post',
+    data: body
   })
 }
