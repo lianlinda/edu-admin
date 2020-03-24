@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Card, Button } from 'antd'
+
 import './index.less'
 
 import EduIcon from '../../../utils/icon'
@@ -10,11 +11,11 @@ class Home extends Component {
       <div className="p-home">
         <p>
           平台信息数据统计
-          <div className="fr">
+          <span className="fr">
             <Button type="primary" shape="round">日</Button>
             <Button shape="round">月</Button>
             <Button shape="round">年</Button>
-          </div>
+          </span>
         </p>
         <Row gutter={16} className="home-over mb16">
           <Col span={6}>

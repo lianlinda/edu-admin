@@ -7,8 +7,9 @@ import EduIcon from '../utils/icon'
 const { SubMenu} = Menu
 
 class AppMenu extends Component {
-  state = {
-    menu: [{
+  constructor(props) {
+    super(props)
+    const menu = [{
       id: '1',
       icon: 'icon-yibiaopan1',
       title: '首页',
@@ -42,12 +43,42 @@ class AppMenu extends Component {
         url: '/main/video'
       }]
     }]
+    // 获取菜单栏默认选中的id值
+    const {parentId, id} = this.getDefaultKeys(menu)
+
+    this.state = {
+      menu,
+      defaultOpenKeys: parentId ? [parentId] : [],
+      defaultSelectedKeys: id ? [id] : []
+    }
+  }
+
+  getDefaultKeys = (menus) => {
+    const pathname = window.location.pathname
+    let parentId, id
+    let findDefault = (menu, parent) => {
+      if (menu.children && menu.children.length) {
+        menu.children.forEach(ele => { findDefault(ele, menu)} )
+      } else {
+        if (menu.url === pathname) {
+          id = menu.id
+          if (parent) {
+            parentId = parent.id
+          }
+          return
+        }
+      }
+    }
+    menus.forEach(ele => {
+      findDefault(ele)
+    })
+    return {parentId, id}
   }
 
   render() {
-    const { menu } = this.state
+    const { menu, defaultOpenKeys, defaultSelectedKeys } = this.state
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys} defaultOpenKeys={defaultOpenKeys}>
         {
           menu.map(ele => {
             if (ele.children.length) {
