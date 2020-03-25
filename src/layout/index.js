@@ -10,11 +10,13 @@ const { Header, Sider, Content } = Layout;
 class AppLayout extends Component {
   state = {
     collapsed: false,
+    layoutMl: 200
   };
 
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
+      layoutMl: this.state.collapsed ? 80 : 200
     });
   };
 
@@ -23,17 +25,24 @@ class AppLayout extends Component {
   }
 
   render() {
-    const { collapsed } = this.state
+    const { collapsed, layoutMl} = this.state
     return (
       <Layout className="app-con">
-        <Sider trigger={null} collapsible collapsed={ collapsed }>
+        <Sider trigger={null} collapsible collapsed={ collapsed }
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+          }}
+        >
           <div className="logo">
             <img src={require('../imgs/logo.png')} className="logo-img" alt="教育" />
             { collapsed ? null : <span className="ml10">教育</span> }
           </div>
           <Menu/>
         </Sider>
-        <Layout>
+        <Layout style={{ marginLeft: layoutMl }}>
           <Header className="app-header">
             <NavBar collapsed={ collapsed } toggle={ this.toggle } logout={ this.Logout }/>
           </Header>

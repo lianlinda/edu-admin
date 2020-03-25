@@ -78,7 +78,7 @@ class AppMenu extends Component {
   render() {
     const { menu, defaultOpenKeys, defaultSelectedKeys } = this.state
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys} defaultOpenKeys={defaultOpenKeys}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys} defaultOpenKeys={defaultOpenKeys} className="app-menu">
         {
           menu.map(ele => {
             if (ele.children.length) {
