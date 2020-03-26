@@ -3,7 +3,7 @@ import { Row, Col, Card, Button, DatePicker, Progress } from 'antd'
 import {
   MoreOutlined
 } from '@ant-design/icons';
-import EduIcon from '../../../utils/icon'
+import EduIcon from '@/utils/icon'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
@@ -24,6 +24,7 @@ class Home extends Component {
       color: ['#2bc17b', '#fbad4a'],
       grid: {
         left: '5%',
+        right: '5%'
       },
       xAxis: {
         type: 'category',
@@ -131,7 +132,7 @@ class Home extends Component {
     // 活跃用户(只取三个)
     activeUsers: [{
       id: 1,
-      avatar: 'http://b-ssl.duitang.com/uploads/item/201511/21/20151121171107_zMZcy.jpeg',
+      avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3743111107,1940472030&fm=111&gp=0.jpg',
       name: 'haha',
       percent: 0.95,
       vip: '8',
@@ -232,7 +233,7 @@ class Home extends Component {
     const paymentTitle = (
       <div>
         今日付款金额
-        <span className="fr">日期：<DatePicker /></span>
+        <span className="fr">日期：<DatePicker className="round-date"/></span>
       </div>
     )
 

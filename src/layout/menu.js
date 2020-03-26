@@ -42,6 +42,12 @@ class AppMenu extends Component {
         title: '全部视频',
         url: '/main/video'
       }]
+    }, {
+      id: '88',
+      icon: 'icon-dingdan',
+      title: '订单管理',
+      url: '/main/order',
+      children: []
     }]
     // 获取菜单栏默认选中的id值
     const {parentId, id} = this.getDefaultKeys(menu)
